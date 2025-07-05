@@ -20,4 +20,4 @@ public class IncidentHistory
         PerformedBy = performedBy;
         Timestamp = DateTime.UtcNow;
     }
-
+}

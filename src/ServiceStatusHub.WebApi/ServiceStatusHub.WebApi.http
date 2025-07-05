@@ -1,0 +1,6 @@
+@ServiceStatusHub.WebApi_HostAddress = http://localhost:5285
+
+GET {{ServiceStatusHub.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

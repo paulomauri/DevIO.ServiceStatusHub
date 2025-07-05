@@ -3,9 +3,89 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36202.13 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BC1745F3-B6B2-4A81-A2FD-5CF01D201A4C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{42786C19-16A7-4EBD-B104-36A7C6D54423}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{1D634DE1-EB52-4E3B-96A2-903E6D5F5243}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.md = Readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceStatusHub.WebApi", "ServiceStatusHub.WebApi", "{5D0C9E92-8FA1-428E-B73B-B35CE334802E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceStatusHub.Application", "ServiceStatusHub.Application", "{E98E316F-8E3E-4A56-9F8B-2B8F2E2B8568}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceStatusHub.Domain", "ServiceStatusHub.Domain", "{20791F09-6A00-432F-87AB-0BDC10468AED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceStatusHub.Infrastructure", "ServiceStatusHub.Infrastructure", "{0E692F27-B2D3-47D1-B9DE-7D385A3FCF77}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceStatusHub.Worker", "ServiceStatusHub.Worker", "{ED80FC09-CC83-4BCE-B826-AF2992537579}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceStatusHub.Tests", "ServiceStatusHub.Tests", "{F9B65EB7-FF20-44CA-BFC5-F7461A017AB8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{8BA6FBFF-87AA-4D72-B8BE-A48895766036}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{7180BE9D-2360-4B33-81BD-83E548CB8459}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStatusHub.WebApi", "src\ServiceStatusHub.WebApi\ServiceStatusHub.WebApi.csproj", "{FA37AC2C-A2C4-4677-BF6A-F8F9F32FD5BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStatusHub.Application", "src\ServiceStatusHub.Application\ServiceStatusHub.Application.csproj", "{ADA976E2-0FD6-453B-BD76-B3E281687B01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStatusHub.Domain", "src\ServiceStatusHub.Domain\ServiceStatusHub.Domain.csproj", "{C4F4F3B6-4E6B-4169-B341-9510A09069FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStatusHub.Infrastructure", "src\ServiceStatusHub.Infrastructure\ServiceStatusHub.Infrastructure.csproj", "{441179A4-8CA6-46D7-BFBA-AF1F87C6DB9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStatusHub.Worker", "src\ServiceStatusHub.Worker\ServiceStatusHub.Worker.csproj", "{0838AD2C-4497-40B7-9E40-251503C583A9}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA37AC2C-A2C4-4677-BF6A-F8F9F32FD5BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA37AC2C-A2C4-4677-BF6A-F8F9F32FD5BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA37AC2C-A2C4-4677-BF6A-F8F9F32FD5BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA37AC2C-A2C4-4677-BF6A-F8F9F32FD5BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADA976E2-0FD6-453B-BD76-B3E281687B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADA976E2-0FD6-453B-BD76-B3E281687B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADA976E2-0FD6-453B-BD76-B3E281687B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADA976E2-0FD6-453B-BD76-B3E281687B01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F4F3B6-4E6B-4169-B341-9510A09069FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F4F3B6-4E6B-4169-B341-9510A09069FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F4F3B6-4E6B-4169-B341-9510A09069FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F4F3B6-4E6B-4169-B341-9510A09069FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{441179A4-8CA6-46D7-BFBA-AF1F87C6DB9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{441179A4-8CA6-46D7-BFBA-AF1F87C6DB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{441179A4-8CA6-46D7-BFBA-AF1F87C6DB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{441179A4-8CA6-46D7-BFBA-AF1F87C6DB9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0838AD2C-4497-40B7-9E40-251503C583A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0838AD2C-4497-40B7-9E40-251503C583A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0838AD2C-4497-40B7-9E40-251503C583A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0838AD2C-4497-40B7-9E40-251503C583A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5D0C9E92-8FA1-428E-B73B-B35CE334802E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{E98E316F-8E3E-4A56-9F8B-2B8F2E2B8568} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{20791F09-6A00-432F-87AB-0BDC10468AED} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{0E692F27-B2D3-47D1-B9DE-7D385A3FCF77} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{ED80FC09-CC83-4BCE-B826-AF2992537579} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{F9B65EB7-FF20-44CA-BFC5-F7461A017AB8} = {BC1745F3-B6B2-4A81-A2FD-5CF01D201A4C}
+		{8BA6FBFF-87AA-4D72-B8BE-A48895766036} = {F9B65EB7-FF20-44CA-BFC5-F7461A017AB8}
+		{7180BE9D-2360-4B33-81BD-83E548CB8459} = {F9B65EB7-FF20-44CA-BFC5-F7461A017AB8}
+		{FA37AC2C-A2C4-4677-BF6A-F8F9F32FD5BE} = {5D0C9E92-8FA1-428E-B73B-B35CE334802E}
+		{ADA976E2-0FD6-453B-BD76-B3E281687B01} = {E98E316F-8E3E-4A56-9F8B-2B8F2E2B8568}
+		{C4F4F3B6-4E6B-4169-B341-9510A09069FE} = {20791F09-6A00-432F-87AB-0BDC10468AED}
+		{441179A4-8CA6-46D7-BFBA-AF1F87C6DB9A} = {0E692F27-B2D3-47D1-B9DE-7D385A3FCF77}
+		{0838AD2C-4497-40B7-9E40-251503C583A9} = {ED80FC09-CC83-4BCE-B826-AF2992537579}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {35BAC396-3DD2-47C2-8BDD-6C8E9D5061DA}

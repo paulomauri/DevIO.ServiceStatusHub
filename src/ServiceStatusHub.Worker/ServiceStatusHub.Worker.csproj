@@ -12,7 +12,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.MongoDb" Version="9.0.0" />
+    <PackageReference Include="MediatR" Version="13.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.6" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
+    <PackageReference Include="Quartz.Extensions.Hosting" Version="3.14.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceStatusHub.Application\ServiceStatusHub.Application.csproj" />
+    <ProjectReference Include="..\ServiceStatusHub.Domain\ServiceStatusHub.Domain.csproj" />
+    <ProjectReference Include="..\ServiceStatusHub.Infrastructure\ServiceStatusHub.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

@@ -12,11 +12,9 @@ namespace ServiceStatusHub.Application.Handlers.IncidentHistory
     public class RemoveIncidentHistoryCommandHandler : IRequestHandler<RemoveIncidentHistoryCommand>
     {
         private readonly IIncidentHistoryRepository _incidentHistoryRepository;
-        private readonly IUnitOfWork _unitOfWork;
-        public RemoveIncidentHistoryCommandHandler(IIncidentHistoryRepository incidentHistoryRepository, IUnitOfWork unitOfWork)
+        public RemoveIncidentHistoryCommandHandler(IIncidentHistoryRepository incidentHistoryRepository)
         {
             _incidentHistoryRepository = incidentHistoryRepository;
-            _unitOfWork = unitOfWork;
         }
         public async Task Handle(RemoveIncidentHistoryCommand request, CancellationToken cancellationToken)
         {
@@ -29,7 +27,6 @@ namespace ServiceStatusHub.Application.Handlers.IncidentHistory
             
             await _incidentHistoryRepository.DeleteAsync(incidentHistory.Id);
 
-            await _unitOfWork.CommitAsync(cancellationToken);
         }
     }
 }

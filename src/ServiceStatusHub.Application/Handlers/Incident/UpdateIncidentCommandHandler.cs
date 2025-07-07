@@ -6,12 +6,10 @@ using ServiceStatusHub.Domain.Interfaces;
 public class UpdateIncidentCommandHandler : IRequestHandler<UpdateIncidentCommand>
 {
     private readonly IIncidentRepository _incidentRepository;
-    private readonly IUnitOfWork _unitOfWork;
 
-    public UpdateIncidentCommandHandler(IIncidentRepository incidentRepository, IUnitOfWork unitOfWork)
+    public UpdateIncidentCommandHandler(IIncidentRepository incidentRepository)
     {
         _incidentRepository = incidentRepository;
-        _unitOfWork = unitOfWork;
     }
 
     public async Task Handle(UpdateIncidentCommand request, CancellationToken cancellationToken)
@@ -24,8 +22,6 @@ public class UpdateIncidentCommandHandler : IRequestHandler<UpdateIncidentComman
         }
 
         await _incidentRepository.UpdateAsync(incident);
-
-        await _unitOfWork.CommitAsync(cancellationToken);
 
     }
 }

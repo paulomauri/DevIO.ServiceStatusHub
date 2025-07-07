@@ -8,11 +8,9 @@ namespace ServiceStatusHub.Application.Handlers.Incident;
 public class RemoveIncidentCommandHandler : IRequestHandler<RemoveIncidentCommand>
 {
     private readonly IIncidentRepository _incidentRepository;
-    private readonly IUnitOfWork _unitOfWork;
-    public RemoveIncidentCommandHandler(IIncidentRepository incidentRepository, IUnitOfWork unitOfWork)
+    public RemoveIncidentCommandHandler(IIncidentRepository incidentRepository)
     {
         _incidentRepository = incidentRepository;
-        _unitOfWork = unitOfWork;
     }
     public async Task Handle(RemoveIncidentCommand request, CancellationToken cancellationToken)
     {
@@ -24,8 +22,6 @@ public class RemoveIncidentCommandHandler : IRequestHandler<RemoveIncidentComman
         }
 
         await _incidentRepository.DeleteAsync(incident);
-
-        await _unitOfWork.CommitAsync(cancellationToken);
 
         return; // Incident removed successfully
     }

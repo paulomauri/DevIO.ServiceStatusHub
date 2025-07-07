@@ -21,6 +21,7 @@ public class AddIncidentHistoryCommandHandler : IRequestHandler<AddIncidentHisto
         );
 
         await _historyRepository.AddAsync(entry);
+
         return entry.Id;
     }
 }

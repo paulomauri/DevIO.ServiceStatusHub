@@ -3,8 +3,10 @@
 public interface IIncidentHistoryRepository
 {
     Task AddAsync(IncidentHistory history);
+    Task<IncidentHistory> GetByIdAsync(Guid id);
     Task<List<IncidentHistory>> GetByIncidentIdAsync(Guid incidentId);
-    Task<List<IncidentHistory>> GetRecentAsync(int count = 50);
+    Task<List<IncidentHistory>> GetRecentAsync(Guid incidentId, int count = 50);
+    Task DeleteAsync(Guid id);
 }
 
 /*

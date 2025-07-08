@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using ServiceStatusHub.Application.Commands.IncidentHistory;
 using ServiceStatusHub.Domain.Interfaces;
 using System;
@@ -12,9 +13,11 @@ namespace ServiceStatusHub.Application.Handlers.IncidentHistory
     public class RemoveIncidentHistoryCommandHandler : IRequestHandler<RemoveIncidentHistoryCommand>
     {
         private readonly IIncidentHistoryRepository _incidentHistoryRepository;
-        public RemoveIncidentHistoryCommandHandler(IIncidentHistoryRepository incidentHistoryRepository)
+        private readonly ILogger<RemoveIncidentHistoryCommandHandler> _logger;
+        public RemoveIncidentHistoryCommandHandler(IIncidentHistoryRepository incidentHistoryRepository, ILogger<RemoveIncidentHistoryCommandHandler> logger)
         {
             _incidentHistoryRepository = incidentHistoryRepository;
+            _logger = logger;
         }
         public async Task Handle(RemoveIncidentHistoryCommand request, CancellationToken cancellationToken)
         {
@@ -27,6 +30,7 @@ namespace ServiceStatusHub.Application.Handlers.IncidentHistory
             
             await _incidentHistoryRepository.DeleteAsync(incidentHistory.Id);
 
+            _logger.LogWarning("Removed incident history entry with ID: {IncidentHistoryId}", request.IncidentHistoryId);
         }
     }
 }

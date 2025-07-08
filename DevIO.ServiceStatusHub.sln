@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36202.13 d17.14
+VisualStudioVersion = 17.14.36202.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -39,6 +39,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStatusHub.Worker", "src\ServiceStatusHub.Worker\ServiceStatusHub.Worker.csproj", "{0838AD2C-4497-40B7-9E40-251503C583A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStatusHub.Tests", "tests\ServiceStatusHub.Tests\ServiceStatusHub.Tests.csproj", "{859EA490-0022-4758-9FA4-B6724BA646CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "logstash", "logstash", "{B1BDACE6-23AA-426A-8B67-35904BC3D580}"
+	ProjectSection(SolutionItems) = preProject
+		logstash.conf = logstash.conf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +92,7 @@ Global
 		{441179A4-8CA6-46D7-BFBA-AF1F87C6DB9A} = {0E692F27-B2D3-47D1-B9DE-7D385A3FCF77}
 		{0838AD2C-4497-40B7-9E40-251503C583A9} = {ED80FC09-CC83-4BCE-B826-AF2992537579}
 		{859EA490-0022-4758-9FA4-B6724BA646CD} = {F9B65EB7-FF20-44CA-BFC5-F7461A017AB8}
+		{B1BDACE6-23AA-426A-8B67-35904BC3D580} = {42786C19-16A7-4EBD-B104-36A7C6D54423}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {35BAC396-3DD2-47C2-8BDD-6C8E9D5061DA}

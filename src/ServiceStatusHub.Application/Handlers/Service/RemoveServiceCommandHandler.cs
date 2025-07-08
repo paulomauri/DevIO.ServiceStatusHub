@@ -1,5 +1,6 @@
 ﻿
 using MediatR;
+using Microsoft.Extensions.Logging;
 using ServiceStatusHub.Application.Commands.Service;
 using ServiceStatusHub.Domain.Interfaces;
 
@@ -8,11 +9,11 @@ namespace ServiceStatusHub.Application.Handlers.Service;
 public class RemoveServiceCommandHandler : IRequestHandler<RemoveServiceCommand>
 {
     private readonly IServiceRepository _serviceRepository;
-    private readonly IUnitOfWork _unitOfWork;
-    public RemoveServiceCommandHandler(IServiceRepository serviceRepository, IUnitOfWork unitOfWork)
+    private readonly ILogger<RemoveServiceCommand> _logger;
+    public RemoveServiceCommandHandler(IServiceRepository serviceRepository, ILogger<RemoveServiceCommand> logger)
     {
         _serviceRepository = serviceRepository;
-        _unitOfWork = unitOfWork;
+        _logger = logger;
     }
     public async Task Handle(RemoveServiceCommand request, CancellationToken cancellationToken)
     {
@@ -24,7 +25,7 @@ public class RemoveServiceCommandHandler : IRequestHandler<RemoveServiceCommand>
         }
         
         await _serviceRepository.DeleteAsync(service.Id);
- 
-        await _unitOfWork.CommitAsync(cancellationToken);
+
+        _logger.LogWarning("Removed service with ID: {ServiceId}, Name: {ServiceName}", service.Id, service.Name);
     }
 }

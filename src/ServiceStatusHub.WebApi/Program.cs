@@ -1,12 +1,28 @@
 using FluentValidation;
+using Serilog;
 using ServiceStatusHub.Application.Commands.Incident;
+using ServiceStatusHub.Application.Mappings;
 using ServiceStatusHub.Application.Validators.Incident;
 using ServiceStatusHub.Infrastructure.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add Logging services
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .WriteTo.Console(new Serilog.Formatting.Json.JsonFormatter())
+    .CreateLogger();
 
+builder.Host.UseSerilog(); // substitui o log padrão
+
+// Add AutoMapper services
+builder.Services.AddAutoMapper( cfg =>
+{
+    cfg.AddMaps(typeof(IncidentProfile).Assembly);
+});
+
+// Add services to the container.
 builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

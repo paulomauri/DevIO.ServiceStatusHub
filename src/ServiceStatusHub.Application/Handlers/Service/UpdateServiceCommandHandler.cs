@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using ServiceStatusHub.Application.Commands.Service;
 using ServiceStatusHub.Domain.Interfaces;
 
@@ -7,11 +8,11 @@ namespace ServiceStatusHub.Application.Handlers.Service;
 public class UpdateServiceCommandHandler : IRequestHandler<UpdateServiceCommand>
 {
     private readonly IServiceRepository _serviceRepository;
-    private readonly IUnitOfWork _unitOfWork;
-    public UpdateServiceCommandHandler(IServiceRepository serviceRepository, IUnitOfWork unitOfWork)
+    private readonly ILogger<UpdateServiceCommand> _logger;
+    public UpdateServiceCommandHandler(IServiceRepository serviceRepository, ILogger<UpdateServiceCommand> logger)
     {
         _serviceRepository = serviceRepository;
-        _unitOfWork = unitOfWork;
+        _logger = logger;
     }
     public async Task Handle(UpdateServiceCommand request, CancellationToken cancellationToken)
     {
@@ -24,7 +25,7 @@ public class UpdateServiceCommandHandler : IRequestHandler<UpdateServiceCommand>
 
         await _serviceRepository.AddAsync(service);
 
-        await _unitOfWork.CommitAsync(cancellationToken);
+        _logger.LogInformation("Service updated with ID: {ServiceId}, Name: {ServiceName}", service.Id, service.Name);
 
         return;
     }

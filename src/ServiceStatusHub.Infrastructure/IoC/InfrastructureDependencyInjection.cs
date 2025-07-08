@@ -16,6 +16,7 @@ public static class InfrastructureDependencyInjection
 
         services.AddScoped<IIncidentRepository, IncidentRepository>();
         services.AddScoped<IIncidentHistoryRepository, IncidentHistoryRepository>();
+        services.AddScoped<IServiceRepository, ServiceRepository>();
 
         return services;
     }

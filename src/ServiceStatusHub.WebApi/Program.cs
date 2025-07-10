@@ -6,6 +6,7 @@ using ServiceStatusHub.Application.Validators.Incident;
 using ServiceStatusHub.Infrastructure.DependencyInjection;
 using ServiceStatusHub.WebApi.Middleware;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add Logging services
@@ -62,3 +63,10 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+// REMARK: Required for functional and integration tests to work.
+namespace ServiceStatusHub.WebApi
+{
+    public partial class Program;
+}

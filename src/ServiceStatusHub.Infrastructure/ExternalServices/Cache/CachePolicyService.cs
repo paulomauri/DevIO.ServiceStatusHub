@@ -1,7 +1,6 @@
 ﻿
 using Microsoft.Extensions.Options;
-using ServiceStatusHub.Application.Interfaces
-
+using ServiceStatusHub.Application.Interfaces;
 using ServiceStatusHub.Application.Settings;
 
 namespace ServiceStatusHub.Infrastructure.ExternalServices.Cache;

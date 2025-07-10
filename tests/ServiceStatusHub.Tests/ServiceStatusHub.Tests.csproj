@@ -23,13 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\" />
-    <Folder Include="Domain\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\src\ServiceStatusHub.Application\ServiceStatusHub.Application.csproj" />
     <ProjectReference Include="..\..\src\ServiceStatusHub.Domain\ServiceStatusHub.Domain.csproj" />
+    <ProjectReference Include="..\..\src\ServiceStatusHub.Infrastructure\ServiceStatusHub.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\ServiceStatusHub.WebApi\ServiceStatusHub.WebApi.csproj" />
   </ItemGroup>
 
 </Project>

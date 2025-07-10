@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ServiceStatusHub.Application\ServiceStatusHub.Application.csproj" />
     <ProjectReference Include="..\ServiceStatusHub.Domain\ServiceStatusHub.Domain.csproj" />
   </ItemGroup>
 

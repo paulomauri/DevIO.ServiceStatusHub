@@ -4,6 +4,7 @@ using ServiceStatusHub.Application.Commands.Incident;
 using ServiceStatusHub.Application.Mappings;
 using ServiceStatusHub.Application.Validators.Incident;
 using ServiceStatusHub.Infrastructure.DependencyInjection;
+using ServiceStatusHub.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +48,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Registra o middleware de logging de requisições e respostas
+app.UseMiddleware<RequestResponseLoggingMiddleware>();
+
+// Registra o middleware de tratamento de exceções 
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 

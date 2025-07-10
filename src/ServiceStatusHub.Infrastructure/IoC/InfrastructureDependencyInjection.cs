@@ -1,5 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
+using ServiceStatusHub.Domain.Entities;
 using ServiceStatusHub.Domain.Interfaces;
 using ServiceStatusHub.Infrastructure.Configuration;
 using ServiceStatusHub.Infrastructure.Context;

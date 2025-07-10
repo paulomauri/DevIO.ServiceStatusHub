@@ -24,6 +24,14 @@ public class IncidentRepository : IIncidentRepository
         await _collection.DeleteOneAsync(x => x.Id == incident.Id);
     }
 
+    public async Task<IEnumerable<Incident>> GetAllAsync()
+    {
+        return await _collection
+            .Find(_ => true)
+            .SortByDescending(x => x.StartedAt)
+            .ToListAsync();
+    }
+
     public async Task<Incident?> GetByIdAsync(Guid id)
     {
         return await _collection.Find(x => x.Id == id).FirstOrDefaultAsync();

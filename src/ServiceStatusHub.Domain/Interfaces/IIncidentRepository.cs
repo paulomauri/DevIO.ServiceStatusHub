@@ -5,6 +5,7 @@ namespace ServiceStatusHub.Domain.Interfaces;
 public interface IIncidentRepository
 {
     Task<Incident?> GetByIdAsync(Guid id);
+    Task<IEnumerable<Incident>> GetAllAsync();
     Task<List<Incident>> GetByServiceIdAsync(Guid serviceId);
     Task AddAsync(Incident incident);
     Task UpdateAsync(Incident incident);

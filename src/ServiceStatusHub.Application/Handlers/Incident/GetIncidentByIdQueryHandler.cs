@@ -41,6 +41,7 @@ public class GetIncidentByIdQueryHandler : IRequestHandler<GetIncidentByIdQuery,
             (
                 incident.Id,
                 incident.ServiceId,
+                incident.Description ?? string.Empty,
                 incident.Status,
                 incident.StartedAt,
                 incident.ResolvedAt
@@ -49,7 +50,7 @@ public class GetIncidentByIdQueryHandler : IRequestHandler<GetIncidentByIdQuery,
 
         return incident is null
             ? throw new KeyNotFoundException("Incident not found")
-            : new IncidentDto(incident.Id, incident.ServiceId, incident.Status, incident.StartedAt, incident.ResolvedAt);
+            : new IncidentDto(incident.Id, incident.ServiceId, incident.Description ?? string.Empty, incident.Status, incident.StartedAt, incident.ResolvedAt);
     }
 }
 

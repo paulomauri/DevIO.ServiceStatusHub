@@ -45,6 +45,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "logstash", "logstash", "{B1
 		logstash.conf = logstash.conf
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "elk", "elk", "{038E8F72-35B7-46C7-ADB1-1C2BD7028832}"
+	ProjectSection(SolutionItems) = preProject
+		elk\elk-docker-compose.yml = elk\elk-docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "logstash", "logstash", "{3C23F107-9361-41A9-9995-E15D02E95B91}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pipeline", "pipeline", "{1FB00004-BB1F-49CC-9784-8F9F18A3D0FA}"
+	ProjectSection(SolutionItems) = preProject
+		elk\logstash\pipeline\logstash.conf = elk\logstash\pipeline\logstash.conf
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +105,8 @@ Global
 		{0838AD2C-4497-40B7-9E40-251503C583A9} = {ED80FC09-CC83-4BCE-B826-AF2992537579}
 		{859EA490-0022-4758-9FA4-B6724BA646CD} = {F9B65EB7-FF20-44CA-BFC5-F7461A017AB8}
 		{B1BDACE6-23AA-426A-8B67-35904BC3D580} = {42786C19-16A7-4EBD-B104-36A7C6D54423}
+		{3C23F107-9361-41A9-9995-E15D02E95B91} = {038E8F72-35B7-46C7-ADB1-1C2BD7028832}
+		{1FB00004-BB1F-49CC-9784-8F9F18A3D0FA} = {3C23F107-9361-41A9-9995-E15D02E95B91}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {35BAC396-3DD2-47C2-8BDD-6C8E9D5061DA}

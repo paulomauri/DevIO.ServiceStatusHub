@@ -21,7 +21,8 @@ public class CreateIncidentCommandHandler : IRequestHandler<CreateIncidentComman
 
     public async Task<Guid> Handle(CreateIncidentCommand request, CancellationToken cancellationToken)
     {
-        var incident = new Incident(request.ServiceId, request.description, request.Status);
+        Guid.TryParse(request.ServiceId.ToString(), out Guid idService);
+        var incident = new Incident(idService, request.description, request.Status);
         
         await _incidentRepository.AddAsync(incident);
 

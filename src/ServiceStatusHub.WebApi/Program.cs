@@ -1,19 +1,30 @@
 using FluentValidation;
+using HealthChecks.UI.Client;
+using HealthChecks.UI.Configuration;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using MongoDB.Driver;
 using Serilog;
+using Serilog.Sinks.Elasticsearch;
+using Serilog.Sinks.Tcp;
 using ServiceStatusHub.Application.Commands.Incident;
 using ServiceStatusHub.Application.Mappings;
 using ServiceStatusHub.Application.Validators.Incident;
 using ServiceStatusHub.Infrastructure.DependencyInjection;
+using ServiceStatusHub.Infrastructure.IoC;
+using ServiceStatusHub.WebApi.HealthCheck;
 using ServiceStatusHub.WebApi.Middleware;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add Logging services
 Log.Logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration)
     .Enrich.FromLogContext()
-    .WriteTo.Console(new Serilog.Formatting.Json.JsonFormatter())
+    .WriteTo.Console()
+    .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri("http://192.168.0.27:9200"))
+    {
+        AutoRegisterTemplate = true,
+        IndexFormat = "servicehub-api-logs-" + DateTime.UtcNow.ToString("yyyy.MM.dd")
+    })
     .CreateLogger();
 
 builder.Host.UseSerilog(); // substitui o log padrão
@@ -38,8 +49,12 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(applicationA
 builder.Services.AddValidatorsFromAssembly(applicationAssembly);
 
 // Add Infrastructure services
+builder.Services.AddCachedDependencies();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddInfrastructureConfigurationMapping();
 
+//Configuring Health Ckeck
+builder.Services.ConfigureHealthChecks(builder.Configuration);
 
 var app = builder.Build();
 
@@ -55,6 +70,20 @@ app.UseMiddleware<RequestResponseLoggingMiddleware>();
 
 // Registra o middleware de tratamento de exceções 
 app.UseMiddleware<ExceptionMiddleware>();
+
+//HealthCheck Middleware
+app.MapHealthChecks("/api/health", new HealthCheckOptions()
+{
+    Predicate = _ => true,
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
+app.UseHealthChecksUI(delegate (Options options)
+{
+    options.UIPath = "/healthcheck-ui";
+    // Caso queira adicionar um CSS customizado, descomente a linha abaixo
+    //options.AddCustomStylesheet("./HealthCheck/Custom.css");
+
+});
 
 app.UseHttpsRedirection();
 

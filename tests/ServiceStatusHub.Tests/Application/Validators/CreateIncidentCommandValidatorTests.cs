@@ -23,4 +23,15 @@ public class CreateIncidentCommandValidatorTests
         result.IsValid.Should().BeFalse();
         result.Errors.Should().Contain(e => e.PropertyName == "description");
     }
+
+    [Fact]
+    public void Should_Pass_With_Valid_Data()
+    {
+        var validator = new CreateIncidentCommandValidator();
+
+        var command = new CreateIncidentCommand(Guid.NewGuid(), "Erro de conexão", IncidentAction.Created.ToString());
+        var result = validator.Validate(command);
+
+        result.IsValid.Should().BeTrue();
+    }
 }

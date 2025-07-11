@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ServiceStatusHub.Application.Commands.Service;
 using ServiceStatusHub.Application.DTOs;
@@ -6,6 +7,7 @@ using ServiceStatusHub.Application.Queries;
 
 namespace ServiceStatusHub.API.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class ServicesController : ControllerBase

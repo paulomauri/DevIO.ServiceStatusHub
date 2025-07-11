@@ -58,4 +58,12 @@ public class IncidentRepository : IIncidentRepository
         var filter = Builders<Incident>.Filter.Eq(x => x.Id, incident.Id);
         await _collection.ReplaceOneAsync(filter, incident);
     }
+
+    public async Task<List<Incident>> GetRecentAsync(int count = 50)
+    {
+        return await _collection.Find(_ => true)
+            .SortByDescending(x => x.StartedAt)
+            .Limit(count)
+            .ToListAsync();
+    }
 }

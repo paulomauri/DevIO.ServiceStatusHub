@@ -11,4 +11,5 @@ public interface IIncidentRepository
     Task UpdateAsync(Incident incident);
     Task ResolveAsync(Guid incidentId);
     Task DeleteAsync(Incident incident);
+    Task<List<Incident>> GetRecentAsync(int count = 50);
 }

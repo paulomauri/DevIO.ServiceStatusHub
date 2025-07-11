@@ -1,7 +1,9 @@
 using FluentValidation;
 using HealthChecks.UI.Client;
 using HealthChecks.UI.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 using Serilog;
 using Serilog.Sinks.Elasticsearch;
@@ -13,10 +15,14 @@ using ServiceStatusHub.Infrastructure.DependencyInjection;
 using ServiceStatusHub.Infrastructure.IoC;
 using ServiceStatusHub.WebApi.HealthCheck;
 using ServiceStatusHub.WebApi.Middleware;
+using System.Text;
+using Microsoft.IdentityModel.Logging;
 
+IdentityModelEventSource.ShowPII = true;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add Serilog configuration
 Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()
     .WriteTo.Console()
@@ -56,14 +62,53 @@ builder.Services.AddInfrastructureConfigurationMapping();
 //Configuring Health Ckeck
 builder.Services.ConfigureHealthChecks(builder.Configuration);
 
+// Add Jwt Authentication
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+        };
+
+        options.Events = new JwtBearerEvents
+        {
+            OnAuthenticationFailed = context =>
+            {
+                Console.WriteLine("JWT falhou: " + context.Exception.Message);
+                return Task.CompletedTask;
+            },
+            OnTokenValidated = context =>
+            {
+                Console.WriteLine("JWT válido: " + context.SecurityToken);
+                return Task.CompletedTask;
+            }
+        };
+    });
+
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.Use(async (context, next) =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    var authHeader = context.Request.Headers["Authorization"].FirstOrDefault();
+    Console.WriteLine("Authorization Header recebido: " + authHeader);
+    await next();
+});
+
+// Configure the HTTP request pipeline.
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 // Registra o middleware de logging de requisições e respostas
 app.UseMiddleware<RequestResponseLoggingMiddleware>();
@@ -87,6 +132,7 @@ app.UseHealthChecksUI(delegate (Options options)
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

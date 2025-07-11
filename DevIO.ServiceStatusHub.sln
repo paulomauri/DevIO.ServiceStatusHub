@@ -57,6 +57,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pipeline", "pipeline", "{1F
 		elk\logstash\pipeline\logstash.conf = elk\logstash\pipeline\logstash.conf
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceStatusHub.Auth", "ServiceStatusHub.Auth", "{849A1F84-D772-4660-A9CD-76A9C7835086}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStatusHub.Auth", "ServiceStatusHub.Auth\ServiceStatusHub.Auth.csproj", "{F2726DD8-0C04-45DF-8BD3-B2D0735E3D6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +91,10 @@ Global
 		{859EA490-0022-4758-9FA4-B6724BA646CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{859EA490-0022-4758-9FA4-B6724BA646CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{859EA490-0022-4758-9FA4-B6724BA646CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2726DD8-0C04-45DF-8BD3-B2D0735E3D6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2726DD8-0C04-45DF-8BD3-B2D0735E3D6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2726DD8-0C04-45DF-8BD3-B2D0735E3D6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2726DD8-0C04-45DF-8BD3-B2D0735E3D6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +115,8 @@ Global
 		{B1BDACE6-23AA-426A-8B67-35904BC3D580} = {42786C19-16A7-4EBD-B104-36A7C6D54423}
 		{3C23F107-9361-41A9-9995-E15D02E95B91} = {038E8F72-35B7-46C7-ADB1-1C2BD7028832}
 		{1FB00004-BB1F-49CC-9784-8F9F18A3D0FA} = {3C23F107-9361-41A9-9995-E15D02E95B91}
+		{849A1F84-D772-4660-A9CD-76A9C7835086} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{F2726DD8-0C04-45DF-8BD3-B2D0735E3D6C} = {849A1F84-D772-4660-A9CD-76A9C7835086}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {35BAC396-3DD2-47C2-8BDD-6C8E9D5061DA}

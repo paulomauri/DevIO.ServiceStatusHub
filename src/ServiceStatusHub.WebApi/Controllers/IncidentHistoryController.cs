@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ServiceStatusHub.Application.Commands.IncidentHistory;
 using ServiceStatusHub.Application.Queries;
@@ -6,6 +7,7 @@ using ServiceStatusHub.WebApi.Models;
 
 namespace ServiceStatusHub.WebApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class IncidentHistoryController : ControllerBase
@@ -21,14 +23,6 @@ namespace ServiceStatusHub.WebApi.Controllers
         public async Task<IActionResult> GetByIncidentId(Guid incidentId)
         {
             var query = new GetIncidentHistoryByIdIncidentQuery(incidentId);
-            var result = await _mediator.Send(query);
-            return Ok(result);
-        }
-
-        [HttpGet("recent")]
-        public async Task<IActionResult> GetRecent([FromQuery] int count = 50)
-        {
-            var query = new GetRecentIncidentHistoryQuery(count);
             var result = await _mediator.Send(query);
             return Ok(result);
         }

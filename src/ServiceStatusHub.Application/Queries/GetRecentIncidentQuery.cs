@@ -8,5 +8,5 @@ using System.Threading.Tasks;
 
 namespace ServiceStatusHub.Application.Queries;
 
-public record GetRecentIncidentHistoryQuery(int count) : IRequest<List<IncidentHistoryDto>>;
+public record GetRecentIncidentQuery(int count) : IRequest<List<IncidentDto>>;
 
